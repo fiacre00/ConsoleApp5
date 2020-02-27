@@ -14,9 +14,13 @@ namespace ConsoleApp5
         static void Main(string[] args)
         {
             List<string> urls = new List<string>();
-            for (int i = 1; i < 18; i++)
+
+            var lastPage = (int)Math.Ceiling(int.Parse(args[0]) / 20.00);
+
+
+            for (int i = 1; i <= lastPage; i++)
             {
-                var uri = $"https://www.jobserve.com/gb/en/JobListingBasic.aspx?shid=84BD28373F1D34B5DB3C&sort=1&view=0&page={i}";
+                var uri = $"https://www.jobserve.com/gb/en/JobListingBasic.aspx?shid={args[1]}&sort=1&view=0&page={i}";
                 var request = (HttpWebRequest)WebRequest.Create(uri);
                 request.Method = "GET";
                 var response = (HttpWebResponse)request.GetResponse();
